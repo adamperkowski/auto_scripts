@@ -1,5 +1,8 @@
  # https://coinpayu.com ads bot
 
+from dotenv import load_dotenv
+from os import getenv
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -34,15 +37,16 @@ def harvest(url):
 
     print(f'Finished {url} .\n\n')
 
+load_dotenv()
+
 options = webdriver.ChromeOptions()
 # options.add_argument("--headless")
 # options.binary_location = "/usr/lib/chromium/chromium"
-options.add_argument(r"--user-data-dir=/home/adam/.config/chromium")
+options.add_argument(f"--user-data-dir={getenv('ACPU_CHROMIUM_CONF_PATH')}")
 options.add_argument(r'--profile-directory=Profile 1')
 driver = webdriver.Chrome(options=options)
 
-harvest("https://www.coinpayu.com/dashboard/ads_surf")
-
-harvest("https://www.coinpayu.com/dashboard/ads_active")
+harvest(getenv('ACPU_SURF_URL'))
+harvest(getenv('ACPU_ACTV_URL'))
 
 print('Finished .')
