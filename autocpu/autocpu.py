@@ -24,7 +24,7 @@ def harvest(url):
     # for i in range(len(adlinks)):
         adlinks[i].find_element(by=By.CSS_SELECTOR, value="span").click()
         print(f'Clicked {i} .')
-        slp = int(adlinks[i].find_element(by=By.XPATH, value="../div[@class='ags-detail-point-time-report']").find_element(by=By.CLASS_NAME, value="ags-detail-time").text) + 15
+        slp = int(adlinks[i].find_element(by=By.XPATH, value="../div[@class='ags-detail-point-time-report']").find_element(by=By.CLASS_NAME, value="ags-detail-time").text) + 25
         print(f'Waiting {slp} .')
         sleep(slp)
         tabs = driver.window_handles
