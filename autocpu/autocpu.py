@@ -2,11 +2,18 @@
 
 from dotenv import load_dotenv
 from os import getenv
+from sys import argv
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 from time import sleep
+
+if len(argv) > 1:
+    wait_time = int(argv[1])
+
+else:
+    wait_time = 25
 
 def harvest(url, mode):
     driver.get(url)
@@ -24,7 +31,7 @@ def harvest(url, mode):
     # for i in range(len(adlinks)):
         adlinks[i].find_element(by=By.CSS_SELECTOR, value="span").click()
         print(f'Clicked {i} .')
-        slp = int(adlinks[i].find_element(by=By.XPATH, value="../div[@class='ags-detail-point-time-report']").find_element(by=By.CLASS_NAME, value="ags-detail-time").text) + 25
+        slp = int(adlinks[i].find_element(by=By.XPATH, value="../div[@class='ags-detail-point-time-report']").find_element(by=By.CLASS_NAME, value="ags-detail-time").text) + wait_time
         tabs = driver.window_handles
         if mode == 'surf':
             print('Switching.')
